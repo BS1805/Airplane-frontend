@@ -3,6 +3,7 @@ import { useAuth } from './modules/auth/AuthContext';
 import { LoginPage } from './modules/auth/LoginPage';
 import { FlightSearchPage } from './modules/flights/FlightSearchPage';
 import { TicketSearchPage } from './modules/tickets/TicketSearchPage';
+import { SalesPreviewPage } from './modules/sales/SalesPreviewPage';
 import { DashboardPage } from './modules/dashboard/DashboardPage';
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
@@ -35,6 +36,14 @@ export default function App() {
         element={
           <PrivateRoute>
             <TicketSearchPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/sales"
+        element={
+          <PrivateRoute>
+            <SalesPreviewPage />
           </PrivateRoute>
         }
       />

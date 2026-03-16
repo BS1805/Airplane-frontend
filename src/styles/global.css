@@ -585,4 +585,142 @@ td {
   color: #6b7280;
 }
 
+/* ---------- Sales preview ---------- */
+
+.sale-preview-card {
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.1),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+  overflow: hidden;
+  width: 100%;
+}
+
+.sale-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  margin: 1.25rem 1.5rem 0;
+}
+
+.sale-preview-badge--ok {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.sale-preview-badge--fail {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.sale-preview-section {
+  padding: 1rem 1.5rem;
+}
+
+.sale-preview-section-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.sale-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem 1rem;
+}
+
+.sale-preview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sale-preview-label {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sale-preview-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.sale-preview-time {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.sale-preview-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 0 1.5rem;
+}
+
+.sale-preview-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.9rem;
+  padding: 0.75rem 1rem;
+  background: #312e81;
+  border-radius: 0.5rem;
+  color: #ffffff;
+}
+
+.sale-preview-total-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sale-preview-total-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.sale-preview-invalid {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.6rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  width: 100%;
+}
+
+.sale-preview-invalid-icon {
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.sale-preview-invalid-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.sale-preview-invalid-msg {
+  font-size: 0.82rem;
+  color: #b91c1c;
+}
+
 

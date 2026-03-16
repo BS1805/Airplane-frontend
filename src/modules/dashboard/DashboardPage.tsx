@@ -68,6 +68,19 @@ export function DashboardPage() {
                 customer care.
               </p>
             </button>
+
+            <button
+              type="button"
+              onClick={() => navigate('/sales')}
+              className="dashboard-card"
+            >
+              <div className="dashboard-card-tag">Sales</div>
+              <h2 className="dashboard-card-title">Sales preview</h2>
+              <p className="dashboard-card-text">
+                Preview passenger and flight details, prices, and validate a sale before
+                proceeding.
+              </p>
+            </button>
           </div>
         </section>
       </div>
