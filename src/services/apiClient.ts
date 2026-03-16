@@ -6,8 +6,8 @@ class ApiClient {
 
   constructor() {
     this.instance = axios.create({
-      // TODO: replace with your ASP.NET Core backend URL
-      baseURL: 'https://localhost:5001/api',
+      // ASP.NET Core backend URL from launchSettings.json (https profile)
+      baseURL: 'https://localhost:7106',
       timeout: 10000
     });
 

@@ -9,8 +9,14 @@ interface User {
 interface AuthContextValue {
   user: User | null;
   isAuthenticated: boolean;
-  login: (username: string, password: string) => Promise<void>;
+  login: (empId: string, password: string) => Promise<void>;
   logout: () => void;
+}
+
+interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+  expiresAtUtc: string;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -21,29 +27,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(() => localStorage.getItem(STORAGE_KEY));
 
+  // When the app reloads and a token exists, treat the user as authenticated
   useEffect(() => {
-    if (!token) return;
-    // Example: decode or fetch current user with token
-    // Replace with real "me" endpoint when your API is ready
-    apiClient
-      .get<User>('/auth/me')
-      .then((res) => setUser(res.data))
-      .catch(() => {
-        setUser(null);
-        setToken(null);
-        localStorage.removeItem(STORAGE_KEY);
+    if (token && !user) {
+      setUser({
+        id: 'stored',
+        username: 'operator'
       });
-  }, [token]);
+    }
+  }, [token, user]);
 
-  const login = async (username: string, password: string) => {
-    // Replace '/auth/login' with your ASP.NET Core login endpoint
-    const res = await apiClient.post<{ token: string; user: User }>('/auth/login', {
-      username,
+  const login = async (empId: string, password: string) => {
+    const numericEmpId = Number(empId);
+
+    const res = await apiClient.post<LoginResponse>('/api/Auth/login', {
+      empId: numericEmpId,
       password
     });
-    setToken(res.data.token);
-    setUser(res.data.user);
-    localStorage.setItem(STORAGE_KEY, res.data.token);
+
+    const accessToken = res.data.accessToken;
+
+    setToken(accessToken);
+    setUser({
+      id: String(numericEmpId),
+      username: empId
+    });
+    localStorage.setItem(STORAGE_KEY, accessToken);
   };
 
   const logout = () => {

@@ -3,7 +3,7 @@ import { useAuth } from './modules/auth/AuthContext';
 import { LoginPage } from './modules/auth/LoginPage';
 import { FlightSearchPage } from './modules/flights/FlightSearchPage';
 import { TicketSearchPage } from './modules/tickets/TicketSearchPage';
-import { Layout } from './components/Layout';
+import { DashboardPage } from './modules/dashboard/DashboardPage';
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
   const { isAuthenticated } = useAuth();
@@ -18,14 +18,26 @@ export default function App() {
         path="/"
         element={
           <PrivateRoute>
-            <Layout />
+            <DashboardPage />
           </PrivateRoute>
         }
-      >
-        <Route index element={<Navigate to="/flights" replace />} />
-        <Route path="flights" element={<FlightSearchPage />} />
-        <Route path="tickets" element={<TicketSearchPage />} />
-      </Route>
+      />
+      <Route
+        path="/flights"
+        element={
+          <PrivateRoute>
+            <FlightSearchPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/tickets"
+        element={
+          <PrivateRoute>
+            <TicketSearchPage />
+          </PrivateRoute>
+        }
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

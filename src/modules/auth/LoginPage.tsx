@@ -5,7 +5,7 @@ import { useAuth } from './AuthContext';
 export function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [empId, setEmpId] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,8 +15,8 @@ export function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      await login(username, password);
-      navigate('/flights');
+      await login(empId, password);
+      navigate('/');
     } catch (err) {
       setError('Invalid username or password');
     } finally {
@@ -42,17 +42,17 @@ export function LoginPage() {
             <div className="auth-field auth-field--floating">
               <div className="auth-input-wrapper">
                 <input
-                  id="username"
-                  type="text"
+                  id="empId"
+                  type="number"
                   className="auth-input"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={empId}
+                  onChange={(e) => setEmpId(e.target.value)}
                   placeholder=" "
                   autoComplete="username"
                   required
                 />
-                <label className="auth-label auth-label--floating" htmlFor="username">
-                  Username
+                <label className="auth-label auth-label--floating" htmlFor="empId">
+                  Employee ID
                 </label>
               </div>
             </div>
