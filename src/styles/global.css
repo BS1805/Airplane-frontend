@@ -309,6 +309,7 @@ td {
   justify-content: flex-start;
   gap: 1.5rem;
   color: #e5e7eb;
+  overflow-y: auto;
 }
 
 .auth-hello {

@@ -4,6 +4,8 @@ import { LoginPage } from './modules/auth/LoginPage';
 import { FlightSearchPage } from './modules/flights/FlightSearchPage';
 import { TicketSearchPage } from './modules/tickets/TicketSearchPage';
 import { SalesPreviewPage } from './modules/sales/SalesPreviewPage';
+import { SalesConfirmPage } from './modules/sales/SalesConfirmPage';
+import { PassengerImportPage } from './modules/passengers/PassengerImportPage';
 import { DashboardPage } from './modules/dashboard/DashboardPage';
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
@@ -44,6 +46,22 @@ export default function App() {
         element={
           <PrivateRoute>
             <SalesPreviewPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/sales/confirm"
+        element={
+          <PrivateRoute>
+            <SalesConfirmPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/passengers/import"
+        element={
+          <PrivateRoute>
+            <PassengerImportPage />
           </PrivateRoute>
         }
       />

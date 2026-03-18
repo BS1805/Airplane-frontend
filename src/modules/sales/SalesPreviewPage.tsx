@@ -102,6 +102,30 @@ export function SalesPreviewPage() {
   const fmtPrice = (val: number) =>
     val?.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) ?? '-';
 
+  const onProceedToConfirm = () => {
+    if (!preview) return;
+
+    navigate('/sales/confirm', {
+      state: {
+        preview: {
+          clientId: preview.clientId,
+          passengerFirstName: preview.passengerFirstName,
+          passengerLastName: preview.passengerLastName,
+          flightId: preview.flightId,
+          flightNumber: preview.flightNumber,
+          flightDate: preview.flightDate,
+          depTime: preview.depTime,
+          arrTime: preview.arrTime,
+          airportDeparture: preview.airportDeparture,
+          airportArrival: preview.airportArrival,
+          passengerCount: preview.passengerCount,
+          unitPrice: preview.unitPrice,
+          totalPrice: preview.totalPrice
+        }
+      }
+    });
+  };
+
   return (
     <div className="auth-page flight-search-page">
       <div className="auth-shell">
@@ -330,6 +354,18 @@ export function SalesPreviewPage() {
                   <span className="sale-preview-total-value">{fmtPrice(preview.totalPrice)}</span>
                 </div>
               </div>
+
+              {preview.canProceedToStep2 && (
+                <div className="sale-preview-footer">
+                  <button
+                    type="button"
+                    className="flight-search-button"
+                    onClick={onProceedToConfirm}
+                  >
+                    Proceed to confirm
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </section>

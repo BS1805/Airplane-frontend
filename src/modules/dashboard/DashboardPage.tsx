@@ -81,6 +81,19 @@ export function DashboardPage() {
                 proceeding.
               </p>
             </button>
+
+            <button
+              type="button"
+              onClick={() => navigate('/passengers/import')}
+              className="dashboard-card"
+            >
+              <div className="dashboard-card-tag">Passengers</div>
+              <h2 className="dashboard-card-title">Passenger import</h2>
+              <p className="dashboard-card-text">
+                Download a CSV template and upload a file to import up to 80 passengers in batch.
+                Duplicates and invalid rows are skipped.
+              </p>
+            </button>
           </div>
         </section>
       </div>
