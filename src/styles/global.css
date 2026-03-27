@@ -368,6 +368,23 @@ td {
     0 0 0 1px rgba(254, 202, 202, 0.8);
 }
 
+.flight-search-button--secondary {
+  margin-top: 0.8rem;
+  background: linear-gradient(to right, #64748b, #475569);
+  box-shadow:
+    0 12px 25px rgba(15, 23, 42, 0.25),
+    0 0 0 1px rgba(148, 163, 184, 0.55);
+}
+
+.flight-search-button--secondary:hover {
+  background: linear-gradient(to right, #475569, #334155);
+}
+
+.flight-search-button--secondary:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
 .flight-search-right {
   border-radius: 1.25rem;
   background: #ffffff;
@@ -862,6 +879,10 @@ td {
 .sale-preview-invalid-msg {
   font-size: 0.82rem;
   color: #b91c1c;
+}
+
+.sale-preview-actions {
+  padding: 0 1.5rem 1.35rem;
 }
 
 
