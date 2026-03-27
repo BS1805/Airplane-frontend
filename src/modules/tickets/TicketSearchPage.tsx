@@ -243,34 +243,45 @@ export function TicketSearchPage() {
         </aside>
 
         <section className="auth-panel">
-          <div className="mb-4">
+          <div className="results-header">
             <h2 className="auth-title">Results</h2>
+            {!loading && tickets.length > 0 && (
+              <span className="results-count-badge">{tickets.length} ticket{tickets.length !== 1 ? 's' : ''}</span>
+            )}
           </div>
 
           <div className="results-table-wrapper">
-            <table className="results-table text-sm">
+            <table className="results-table">
               <thead>
                 <tr>
-                  <th className="px-3 py-2 text-left">Ticket</th>
-                  <th className="px-3 py-2 text-left">Passenger</th>
-                  <th className="px-3 py-2 text-left">Flight</th>
-                  <th className="px-3 py-2 text-left">Date</th>
-                  <th className="px-3 py-2 text-left">Route</th>
-                  <th className="px-3 py-2 text-left">Seat</th>
+                  <th>Ticket #</th>
+                  <th>Passenger</th>
+                  <th>Flight</th>
+                  <th>Date</th>
+                  <th>Route</th>
+                  <th>Seat</th>
                 </tr>
               </thead>
               <tbody>
                 {loading && (
-                  <tr>
-                    <td className="px-3 py-3 text-sm text-slate-500" colSpan={6}>
-                      Loading tickets…
+                  <tr className="table-loading-row">
+                    <td colSpan={6}>
+                      <div className="table-loading-content">
+                        <span className="table-spinner" />
+                        Loading tickets…
+                      </div>
                     </td>
                   </tr>
                 )}
                 {!loading && (error || tickets.length === 0) && (
-                  <tr>
-                    <td className="px-3 py-3 text-sm text-slate-500" colSpan={6}>
-                      No tickets found.
+                  <tr className="table-empty-row">
+                    <td colSpan={6}>
+                      <div className="table-empty-content">
+                        <span className="table-empty-icon">🎫</span>
+                        <span className="table-empty-text">
+                          {error ? 'Could not load tickets.' : 'No tickets found. Try adjusting your search.'}
+                        </span>
+                      </div>
                     </td>
                   </tr>
                 )}
@@ -278,19 +289,29 @@ export function TicketSearchPage() {
                   !error &&
                   tickets.length > 0 &&
                   tickets.map((t) => (
-                    <tr key={t.ticketId} className="border-t">
-                      <td className="px-3 py-2">{t.ticketId}</td>
-                      <td className="px-3 py-2">
+                    <tr key={t.ticketId}>
+                      <td>
+                        <span className="table-badge table-badge--slate">#{t.ticketId}</span>
+                      </td>
+                      <td style={{ fontWeight: 500 }}>
                         {t.passengerFirstName} {t.passengerLastName}
                       </td>
-                      <td className="px-3 py-2">{t.flightNumber}</td>
-                      <td className="px-3 py-2">
-                        {t.flightDate ? new Date(t.flightDate).toLocaleDateString() : '-'}
+                      <td>
+                        <span className="table-badge table-badge--sky">{t.flightNumber}</span>
                       </td>
-                      <td className="px-3 py-2">
-                        {t.departureAirportId} → {t.arrivalAirportId}
+                      <td style={{ color: '#475569' }}>
+                        {t.flightDate ? new Date(t.flightDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}
                       </td>
-                      <td className="px-3 py-2">{t.seat}</td>
+                      <td>
+                        <span className="route-cell">
+                          {t.departureAirportId}
+                          <span className="route-arrow">▶</span>
+                          {t.arrivalAirportId}
+                        </span>
+                      </td>
+                      <td>
+                        <span className="table-badge table-badge--indigo">{t.seat}</span>
+                      </td>
                     </tr>
                   ))}
               </tbody>

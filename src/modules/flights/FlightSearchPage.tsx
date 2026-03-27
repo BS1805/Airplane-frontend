@@ -214,51 +214,70 @@ export function FlightSearchPage() {
         </aside>
 
         <section className="auth-panel">
-          <div className="mb-4">
+          <div className="results-header">
             <h2 className="auth-title">Results</h2>
+            {!loading && flights.length > 0 && (
+              <span className="results-count-badge">{flights.length} flight{flights.length !== 1 ? 's' : ''}</span>
+            )}
           </div>
 
           <div className="results-table-wrapper">
-            <table className="results-table text-sm">
+            <table className="results-table">
               <thead>
                 <tr>
-                  <th className="px-3 py-2 text-left">Flight</th>
-                  <th className="px-3 py-2 text-left">Date</th>
-                  <th className="px-3 py-2 text-left">Route</th>
-                  <th className="px-3 py-2 text-left">Departure time</th>
-                  <th className="px-3 py-2 text-left">Arrival time</th>
-                  <th className="px-3 py-2 text-right">Passengers</th>
+                  <th>Flight</th>
+                  <th>Date</th>
+                  <th>Route</th>
+                  <th>Departure</th>
+                  <th>Arrival</th>
+                  <th>Passengers</th>
                 </tr>
               </thead>
               <tbody>
                 {loading && (
-                  <tr>
-                    <td className="px-3 py-3 text-sm text-slate-500" colSpan={6}>
-                      Loading flights…
+                  <tr className="table-loading-row">
+                    <td colSpan={6}>
+                      <div className="table-loading-content">
+                        <span className="table-spinner" />
+                        Loading flights…
+                      </div>
                     </td>
                   </tr>
                 )}
                 {!loading && flights.length === 0 && (
-                  <tr>
-                    <td className="px-3 py-3 text-sm text-slate-500" colSpan={6}>
-                      No flights found.
+                  <tr className="table-empty-row">
+                    <td colSpan={6}>
+                      <div className="table-empty-content">
+                        <span className="table-empty-icon">✈️</span>
+                        <span className="table-empty-text">
+                          {error ? 'Could not load flights.' : 'No flights found. Try adjusting your search.'}
+                        </span>
+                      </div>
                     </td>
                   </tr>
                 )}
                 {!loading &&
                   flights.length > 0 &&
                   flights.map((f) => (
-                    <tr key={f.flightId} className="border-t">
-                      <td className="px-3 py-2">{f.flightNumber}</td>
-                      <td className="px-3 py-2">
-                        {f.flightDate ? new Date(f.flightDate).toLocaleDateString() : '-'}
+                    <tr key={f.flightId}>
+                      <td>
+                        <span className="table-badge table-badge--sky">{f.flightNumber}</span>
                       </td>
-                      <td className="px-3 py-2">
-                        {f.departureAirportId} → {f.arrivalAirportId}
+                      <td style={{ color: '#475569' }}>
+                        {f.flightDate ? new Date(f.flightDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}
                       </td>
-                      <td className="px-3 py-2">{f.departureTime || '-'}</td>
-                      <td className="px-3 py-2">{f.arrivalTime || '-'}</td>
-                      <td className="px-3 py-2 text-right">{f.totalPassengers}</td>
+                      <td>
+                        <span className="route-cell">
+                          {f.departureAirportId}
+                          <span className="route-arrow">▶</span>
+                          {f.arrivalAirportId}
+                        </span>
+                      </td>
+                      <td style={{ fontWeight: 500 }}>{f.departureTime || '—'}</td>
+                      <td style={{ fontWeight: 500 }}>{f.arrivalTime || '—'}</td>
+                      <td>
+                        <span className="table-badge table-badge--indigo">{f.totalPassengers}</span>
+                      </td>
                     </tr>
                   ))}
               </tbody>
