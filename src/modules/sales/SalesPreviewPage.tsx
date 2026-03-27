@@ -153,9 +153,7 @@ export function SalesPreviewPage() {
               </button>
             </div>
 
-            <div className="auth-hello">
-              Sales<span> Preview</span>
-            </div>
+            <div className="auth-hello">Sales</div>
 
             <div className="flight-search-form">
               <div className="flight-search-row">
@@ -232,7 +230,7 @@ export function SalesPreviewPage() {
               </div>
 
               <button type="button" onClick={onPreview} className="flight-search-button">
-                Preview sale
+                Preview
               </button>
             </div>
           </div>
@@ -274,7 +272,7 @@ export function SalesPreviewPage() {
           {/* Idle — nothing searched yet */}
           {!loading && !error && !preview && (
             <p className="text-sm text-slate-400 mt-1">
-              Fill in the form and click <strong>Preview sale</strong> to validate.
+              Fill in the form and click <strong>Preview</strong> to validate.
             </p>
           )}
 

@@ -135,7 +135,7 @@ export function FlightSearchPage() {
             </div>
 
             <div className="auth-hello">
-              Flight<span> Search</span>
+              Search<span> Flight</span>
             </div>
 
             <div className="flight-search-form">
@@ -207,7 +207,7 @@ export function FlightSearchPage() {
               </div>
 
               <button type="button" onClick={onSearch} className="flight-search-button">
-                Search flights
+                Search
               </button>
             </div>
           </div>

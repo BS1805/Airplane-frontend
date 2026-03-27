@@ -130,7 +130,7 @@ export function TicketSearchPage() {
             </div>
 
             <div className="auth-hello">
-              Ticket<span> Search</span>
+              Search<span> Ticket</span>
             </div>
 
             <div className="flight-search-form">
@@ -236,7 +236,7 @@ export function TicketSearchPage() {
               </div>
 
               <button type="button" onClick={onSearch} className="flight-search-button">
-                Search tickets
+                Search
               </button>
             </div>
           </div>

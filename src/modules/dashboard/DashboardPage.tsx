@@ -49,7 +49,7 @@ export function DashboardPage() {
               className="dashboard-card dashboard-card--primary"
             >
               <div className="dashboard-card-tag">Flights</div>
-              <h2 className="dashboard-card-title">Flight search</h2>
+              <h2 className="dashboard-card-title">Search Flight</h2>
               <p className="dashboard-card-text">
                 Search flight schedules by number, route or date. Review timings, routing and
                 pricing in one place.
@@ -62,7 +62,7 @@ export function DashboardPage() {
               className="dashboard-card"
             >
               <div className="dashboard-card-tag">Tickets</div>
-              <h2 className="dashboard-card-title">Ticket search</h2>
+              <h2 className="dashboard-card-title">Search Ticket</h2>
               <p className="dashboard-card-text">
                 Look up tickets by passenger, ticket ID or flight details to support check‑in and
                 customer care.
@@ -75,7 +75,7 @@ export function DashboardPage() {
               className="dashboard-card"
             >
               <div className="dashboard-card-tag">Sales</div>
-              <h2 className="dashboard-card-title">Sales preview</h2>
+              <h2 className="dashboard-card-title">Sales</h2>
               <p className="dashboard-card-text">
                 Preview passenger and flight details, prices, and validate a sale before
                 proceeding.
